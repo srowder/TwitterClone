@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&family=Poppins:wght@300;400;500;600&display=swap');
+
+body,html{
+    margin:0;
+    padding: 0;
+    height: 100%;
+    background-color: #6D9AC4;
+    font-family: 'Inter', sans-serif;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100vh; 
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    /* border: 1px solid black; */
+    background-color: #4D41AB;
+    padding: 201px 0;
+    width: 200px;
+    height: auto;
+}
+
+
+.signup-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height:100%;
+}
+
+.form-container{
+    background-color: white;
+    /* border: 1px solid black; */
+    padding: 25px;
+    font-weight: normal;
+    width: 350px;
+    height: 500px;
+}
+
+.header-text{
+    display:flex;
+    justify-content: start;
+    padding: 5px 10px ;
+    font-size: 2em;
+}
+
+.div-margin{
+    margin:.7em 1em;
+}
+
+.input-style{
+    width: 250px;
+    height: 30px;
+    -webkit-box-shadow: -2px 4px 14px 0px rgba(0,0,0,0.7); 
+    box-shadow: -2px 4px 7px 0px rgba(0,0,0,0.7);
+    
+}
+
+.input-style:focus {
+    outline: 2px solid #333; /* Change this to the desired color and width */
+}
+
+.label-text{
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+.submit-button{
+    background-color: #EE5684;
+    color: #fff;
+    border: none;
+    padding: 8px 30px; 
+    cursor: pointer;
+    font-size: 1.1em; 
+    width: 80%;
+    border-radius: 20px;
+    
+}
+
+.checkbox-button{
+    margin-top: 5px;
+    width: 25px; 
+    height: 25px; 
+    cursor: pointer;
+}
+
+.link-style {
+    display:block;  
+    font-size: 18px;
+    margin-top: -3px; 
+    margin-left: 20px;
+    width: fit-content;
+    color: #328ED1;
+}
+
+.login-signup-logo{
+    height: 150px;
+}
+
+@media screen and (max-width: 798px) {
+    .logo-container {
+        display: none;
+    }
+}

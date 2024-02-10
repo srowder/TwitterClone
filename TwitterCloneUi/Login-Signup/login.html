@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login-style.css">
+    <script src="login_api.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">     
+            <form class="form-container">        
+                <div class="header-text ">
+                    <span>Login</span>
+                </div>
+                <div >
+                    <div class="div-margin">
+                        <label class="label-text" for="userEmail">Email</label>
+                    </div>
+                    <div class="div-margin">
+                        <input class="input-style" type="email" id="userEmail" name="userEmail" required>
+                    </div>
+                </div>
+                <div>
+                    <div class="div-margin">
+                        <label class="label-text label-margin" for="password">Password</label>
+                    </div>
+                    <div class="div-margin">
+                        <input class="input-style" class="label-margin" type="password" id="password" name="password" required>
+                    </div>
+                    
+                </div>
+                
+                <div class="div-margin">
+                    <input class="checkbox-button" type="checkbox" id="rememberMe" name="rememberMe">
+                    <label class="label-text" for="rememberMe">Remember me?</label>
+                </div>
+                
+                <div class="div-margin">
+                    <input class="submit-button" type="submit" value="Login" onclick="login()">
+                </div>
+
+                <div class="div-margin">
+                    <a class="link-style" href="signup.html">Create new Account?</a>
+                </div>       
+            </form>      
+        </div>
+        <div class="logo-container">
+            <img class="login-signup-logo" src="Images/twitter-logo.png" alt="website-logo">
+        </div>
+    </div>
+</body>
+</html>
