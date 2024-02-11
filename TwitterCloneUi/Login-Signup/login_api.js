@@ -7,6 +7,10 @@ async function login(){
     console.log(username)
     console.log(password)
 
+
+    const usernameInput = document.getElementById('username').value;
+    localStorage.setItem('username', usernameInput);
+
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 

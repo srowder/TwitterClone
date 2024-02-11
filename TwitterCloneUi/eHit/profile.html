@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="header-container">
+            <div class='profile-image-container'>
+                <div class="image"></div>
+            </div>
+            <div class="text-headers">
+                <span class="text-username" id="username-display">Username</span>
+            </div>
+            <div class="text-headers">
+                <span class="text">Your Post</span>
+            </div>
+        </div>
+        
+        <div class="user-tweet-container">
+            <div class="user-tweet">
+                <ul>
+                    <li class="list-size">
+    
+                    </li>
+
+                    <li class="list-size">
+    
+                    </li>
+
+                    
+                    <li class="list-size">
+    
+                    </li>
+
+                    </li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the username from localStorage
+            const username = localStorage.getItem('username');
+    
+            // Display the username in the username container
+            const usernameDisplay = document.getElementById('username-display');
+            usernameDisplay.textContent = username;
+        });
+    </script>
+
+   
+</body>
+</html>

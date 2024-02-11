@@ -1,0 +1,66 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    background-color: #36454F;
+}
+
+.header-container {
+    position: sticky; 
+    top: 0;
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.profile-container {
+    width: 40vw;
+    min-height: 80%;
+    height: auto;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: #E4E6EB;
+}
+
+
+.profile-image-container{
+    width: 100px;
+    height: 100px;
+    margin:auto;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: violet;
+    padding:20px;
+    margin-bottom: 10px;
+}
+
+.text-headers{
+    display:flex;
+    justify-content: center;
+}
+
+.text-username{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.text{
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.list-size{
+    list-style: none;
+    width: auto;
+    height: 100px;
+    background-color: aqua;
+    margin: 20px;
+}
+
+.user-tweet-container {
+    max-height: 300px; /* Set a maximum height for the container */
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    margin-top: 20px; /* Add some top margin for spacing */
+    margin-left: -40px;
+}
