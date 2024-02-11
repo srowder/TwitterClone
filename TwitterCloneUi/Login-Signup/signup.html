@@ -14,20 +14,13 @@
                 <div class="header-text ">
                     <span>Signup</span>
                 </div>
-                <div >
-                    <div class="div-margin">
-                        <label class="label-text" for="userEmail">Email</label>
-                    </div>
-                    <div class="div-margin">
-                        <input class="input-style" type="email" id="userEmail" name="userEmail" required>
-                    </div>
-                </div>
                 <div>
                     <div class="div-margin">
-                        <label class="label-text" for="usermame">Username</label>
+                        <label class="label-text" for="username">Username</label>
                     </div>
                     <div class="div-margin">
-                        <input class="input-style" type="text" id="username" name="username" required>
+                        <input class="input-style" type="text" id="username" name="username" maxlength="16" required>
+                        <p id="note">Username should only contain letters and numbers and must be 3-16 characters.</p>
                     </div>
                 </div>
                 <div>
@@ -46,13 +39,7 @@
                         <input class="input-style" class="label-margin" type="password" id="confirmPassword" name="confirmPassword" required>
                     </div>             
                 </div>
-                
-                <div class="div-margin checkbox-lining">
-                    <input class="checkbox-button" type="checkbox" id="rememberMe" name="rememberMe">
-                    <label class="label-text" for="rememberMe">Remember me?</label>
-                </div>
-                
-                <div class="div-margin">
+                <div class="div-margin" id="div-submit-button">
                     <input class="submit-button" type="submit" value="Register">
                 </div>
 

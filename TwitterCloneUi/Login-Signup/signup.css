@@ -82,7 +82,10 @@ body,html{
     font-size: 1.1em; 
     width: 80%;
     border-radius: 20px;
-    
+}
+
+#div-submit-button{
+    margin-top: 45px;
 }
 
 .checkbox-button{
@@ -103,6 +106,12 @@ body,html{
 
 .login-signup-logo{
     height: 150px;
+}
+
+#note {
+    font-size: 12px;
+    font-weight: 10;
+    width: 250px;
 }
 
 @media screen and (max-width: 798px) {
