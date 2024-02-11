@@ -89,6 +89,60 @@ html {
     background-color: lightcyan;
 }
 
+.search-container {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.searchBox {
+    border: none;
+    padding: 10px;
+    flex: 1;
+    overflow: hidden;
+}
+
+#clearButton {
+    border: none;
+    background-color: #f2f2f2;
+    padding: 10px;
+    cursor: pointer;
+}   
+
+/* 
+.user-follow {
+    margin-bottom: 10px;
+}
+
+.followButton,
+.unfollowButton {
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    min-width: 100px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.followButton {
+    color: black;
+    background-color: white;
+}
+
+.followButton:hover {
+    background-color: lightgray;
+}
+
+.unfollowButton {
+    
+}
+
+.unfollowButton:hover {
+    color: red;
+    border-color: red;
+} */
+
 #trending-container {
     padding: 20px;
     border-top: 1px solid #ccc;
@@ -186,7 +240,7 @@ ul {
 
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 700px) {
 /* Mobile Screen Size*/
         #sidebar {
             display:none;

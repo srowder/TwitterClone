@@ -27,13 +27,24 @@
         </div>
       
         <div id="users-container">
-            <h2>Users List</h2>
+            <!-- <h2>Users List</h2> -->
+            
             <!-- Potential User API Here -->
-            <ul>
-                <li>User 1</li>
-                <li>User 2</li>
-                <li>User 3</li>
-            </ul>
+
+            <div class="search-container">
+                <input type="text" class="searchBox" id="search-user-1" placeholder="Enter username" oninput="toggleSearchButton()">
+                <button id="clearButton" style="display: none;" onclick="clearText()">x</button>
+            </div>
+
+            <!-- <div class="user-follow">
+                <label id="Label2">User 2 </label>
+                <button class="followButton" id="user-follow-2" onclick="toggleFollow(this)" onmouseover="hoverButton(this)" onmouseout="unhoverButton(this)">Follow</button>
+            </div>
+            <div class="user-follow">
+                <label id="Label3">User 3 </label>
+                <button class="followButton" id="user-follow-3" onclick="toggleFollow(this)" onmouseover="hoverButton(this)" onmouseout="unhoverButton(this)">Follow</button>
+            </div> -->
+
         </div>
     
         <div id="trending-container">
@@ -77,6 +88,50 @@
             const usernameDisplay = document.getElementById('username-display');
             usernameDisplay.textContent = username;
         });
+
+        function toggleSearchButton() {
+        var inputText = document.getElementById('search-user-1').value;
+        var button = document.getElementById('clearButton');
+
+        if (inputText.trim() !== '') {
+            button.style.display = 'inline-block';
+        } else {
+            button.style.display = 'none';
+        }
+    }
+
+        function clearText() {
+            var inputElement = document.getElementById('search-user-1');
+            inputElement.value = '';
+            toggleSearchButton();
+        }
+
+        // function toggleFollow(button) {
+        //     if (button.innerHTML === "Follow") {
+        //         button.innerHTML = "Following";
+        //         button.classList.remove("followButton");
+        //         button.classList.add("unfollowButton");
+        //     } else {
+        //         button.innerHTML = "Follow";
+        //         button.classList.remove("unfollowButton");
+        //         button.classList.add("followButton");
+        //     }
+        // }
+
+        // function hoverButton(button) {
+        //     if (button.innerHTML === "Following") {
+        //         button.classList.add("following");
+        //         button.innerHTML = "Unfollow";
+        //     }
+        // }
+
+        // function unhoverButton(button) {
+        //     if (button.innerHTML === "Unfollow") {
+        //         button.classList.remove("following");
+        //         button.innerHTML = "Following";
+        //     }
+        // }
+
     </script>
 
 
