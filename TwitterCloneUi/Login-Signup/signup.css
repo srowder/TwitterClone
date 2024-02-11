@@ -84,6 +84,7 @@ body,html{
     border-radius: 20px;
 }
 
+
 #div-submit-button{
     margin-top: 45px;
 }
@@ -110,7 +111,7 @@ body,html{
 
 #note {
     font-size: 12px;
-    font-weight: 10;
+    font-weight: 500;
     width: 250px;
 }
 
