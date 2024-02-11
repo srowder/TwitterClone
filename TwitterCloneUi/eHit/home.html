@@ -19,7 +19,7 @@
                 <img id="profile-pic" src="/Login-Signup/Images/twitter-logo.png" alt="Profile Picture">
             </div>
             <div id="username-container">
-                <h2> Your Username </h2>
+                <h2 id="username-display"> Your Username </h2>
             </div>
             <div id="sign-out-container">    
                 <button id="sign-out-button"><a href="/Login-Signup/login.html"> Sign Out </a></button>
@@ -67,6 +67,18 @@
             FOLLOW USERS TO SEE WHAT THEY ARE POSTING
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the username from localStorage
+            const username = localStorage.getItem('username');
+    
+            // Display the username in the username container
+            const usernameDisplay = document.getElementById('username-display');
+            usernameDisplay.textContent = username;
+        });
+    </script>
+
 
 </body>
 </html>

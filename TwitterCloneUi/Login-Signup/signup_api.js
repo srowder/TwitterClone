@@ -1,29 +1,40 @@
-function register() {
-    // Getting user input
-    let username = document.getElementById('userName').value
-    let password = document.getElementById('password').value
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('signupForm');
 
-    // Checking:
-    console.log(username)
-    console.log(password)
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent default form submission
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+        const formData = new FormData(form);
 
-    var raw = JSON.stringify({
-    "username": username,
-    "password": password
+        const userData = {
+            username: formData.get('username'),
+            password: formData.get('password')
+        };
+
+        const usernameInput = document.getElementById('username').value;
+        localStorage.setItem('username', usernameInput);
+
+
+        try {
+            const response = await fetch("/api/v1/auth/register", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                // Registration successful, redirect to the home page
+                window.location.href = "../Ehit/home.html";
+            } else {
+                console.error('Registration failed:', response.status);
+            }
+
+            const data = await response.text();
+            console.log(data); 
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
-
-    var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
-    };
-
-    fetch("http://localhost:3000/api/v1/auth/register", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-}
+});
