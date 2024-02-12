@@ -188,56 +188,73 @@ ul {
 
 /* POST BAR */
 
-#myPosts {
-    display: flex;
-    background-color: antiquewhite;
+.post {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: flex; 
+    flex-direction: column; 
+}
+.post p {
+    color: #666;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    flex-grow: 1; 
+}
+.postBtn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin-left: 4vh;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.postBtn:hover {
+    background-color: #555;
+}
+form {
     margin-top: 5vh;
-    height: 20vh;
-    width: 100%;
-    flex-direction: column;
+}
+form input[type="text"],
+form textarea {
+    width: 90%;
+    padding: 10px;
+    margin-left: 4vh;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+#postsContainer .placeholder-text {
+    margin-top: 10px;
+    margin-left: 4vh;
+    color: #666;
 }
 
-.create-post-container {
-    height: 100%;
-    width: 100%;
-    margin: 0% auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.likeBtn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: auto;
+}
+.likeBtn:hover {
+    background-color: #2980b9;
 }
 
-.post-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#my-post-text {
-    display: flex;
-    background-color: antiquewhite;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding-left: 5%;
-}
-
-#my-post-button {
-    width: 20%;
-}
-
-#otherPosts {
-    display: flex;
-    background-color: darkgray;
-    color: white;
-    width: 100%;
-    border: 5vh;
-    height: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    justify-content: center;
-    float: right;
-
+.likeCount {
+    margin-left: auto; 
+    color: #666;
 }
 
 @media only screen and (max-width: 700px) {
