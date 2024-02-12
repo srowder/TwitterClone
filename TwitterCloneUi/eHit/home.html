@@ -65,17 +65,17 @@
                 <li><a href="#following">Following</a></li>
             </ul>
         </div>
-        <div id="myPosts">
-            <div class="create-post-container">
-                <input id="my-post-text" type="text" placeholder="What is happening?!">
+        <main>
+            <form id="postForm">
+                <textarea id="postContent" placeholder="What is happening?!" maxlength="280" required></textarea>
+                <button type="submit" class="postBtn">Submit Post</button>
+            </form>
+    
+            <!-- container for posts -->
+            <div id="postsContainer">
+                <p class="placeholder-text">FOLLOW USERS TO SEE WHAT THEY ARE POSTING</p>
             </div>
-            <div class="post-button-container">
-                <button id="my-post-button">Post</button>
-            </div>
-        </div>
-        <div id="otherPosts">
-            FOLLOW USERS TO SEE WHAT THEY ARE POSTING
-        </div>
+        </main>
     </div>
     
     <script>
@@ -131,6 +131,58 @@
         //     }
         // }
 
+         //posting logic
+         document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault(); //prevents the default submission behavior
+            
+            var content = document.getElementById('postContent').value;
+
+            
+            var postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            var profilePicture = document.createElement('img');
+            profilePicture.className = 'profile-picture';
+            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+            var postContent = document.createElement('p');
+            postContent.textContent = content;
+            var likeButton = document.createElement('button');
+            likeButton.className = 'likeBtn';
+            likeButton.textContent = 'Like';
+            var likeCount = document.createElement('span');
+            likeCount.className = 'likeCount'; 
+            likeCount.textContent = '0';
+
+            postDiv.appendChild(profilePicture);
+            postDiv.appendChild(postContent);
+            postDiv.appendChild(likeButton);
+            postDiv.appendChild(likeCount); 
+
+            
+            var postsContainer = document.getElementById('postsContainer');
+            var placeholderText = postsContainer.querySelector('.placeholder-text');
+            if (placeholderText) {
+                
+                postsContainer.removeChild(placeholderText);
+            }
+            
+            postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+
+            
+            document.getElementById('postContent').value = '';
+
+            
+            likeButton.addEventListener('click', function() {
+                if (likeButton.textContent === 'Like') {
+                    var currentLikes = parseInt(likeCount.textContent);
+                    likeCount.textContent = currentLikes + 1;
+                    likeButton.textContent = 'Unlike';
+                } else {
+                    var currentLikes = parseInt(likeCount.textContent);
+                    likeCount.textContent = currentLikes - 1;
+                    likeButton.textContent = 'Like';
+                }
+            });
+        });
     </script>
 
 
