@@ -14,8 +14,11 @@
 
     <div id="sidebar">
         <div id="profile-container">
+            <div id="close-menu">
+                <button id="close-menu-button" onclick="closeMenu()">x</button>
+            </div>
             <div id="profile-picture-container">
-                <img id="profile-pic" src="/Login-Signup/Images/twitter-logo.png" alt="Profile Picture">
+                <img id="profile-pic" src="/eHit/Images/user.png" alt="Profile Picture">
             </div>
             <div id="username-container">
                 <a id="username-display" href="profile.html"> Your Username </a>
@@ -59,11 +62,17 @@
 
     <div id="desktop-nav">
         <div>
-            <ul id="desktop-header">
-                <li><a href="/account/login.html">Your Post</a></li>
-                <li><a href="/eHit/home.html"><img class="website-logo" src="/Login-Signup/Images/twitter-logo.png" alt="website-logo"></a></li>
-                <li><a href="#following">Following</a></li>
-            </ul>
+            <div id="desktop-header">
+                <div id="small-menu">
+                    <img id="small-pic" src="/eHit/Images/user.png" alt="Profile Picture">
+                </div>  
+                <ul id="header-menu">
+                    <li><a href="/account/login.html">Your Post</a></li>
+                    <li><a href="/eHit/home.html"><img class="website-logo" src="/Login-Signup/Images/twitter-logo.png" alt="website-logo"></a></li>
+                    <li><a href="#following">Following</a></li>
+                </ul>
+            </div>
+            
         </div>
         <main>
             <form id="postForm">
@@ -156,7 +165,7 @@
 
 
          //posting logic
-            document.getElementById('postForm').addEventListener('submit', function(event) {
+        document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); //prevents the default submission behavior
             const currentDate = new Date().toISOString();
             userPost();
@@ -228,6 +237,19 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const smallMenu = document.getElementById('small-menu');
+            const sidebar = document.getElementById('sidebar');
+
+            smallMenu.addEventListener('click', function () {
+                sidebar.classList.toggle('show-sidebar');
+            });
+        });
+
+        function closeMenu(){
+            sidebar.classList.toggle('show-sidebar');
+        }
 
     </script>
 
