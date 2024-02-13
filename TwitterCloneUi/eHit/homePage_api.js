@@ -91,6 +91,38 @@ async function displayUserPosts() {
     }
 }
 
+/* Follow Related Fetch Requests */
+async function followUser(){
+  let userToFollow = document.getElementById('search-user-1').value;
+  let currUser = localStorage.getItem('username');
+  let endpoint = `http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`;
+
+  console.log(userToFollow)
+  console.log(currUser)
+  console.log(endpoint)
+
+  var myHeaders = new Headers()
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var raw = "";
+
+  var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+  };
+
+  const res = await fetch(endpoint, requestOptions)
+  if(res.status==201){
+    alert("User followed")
+  } else if (res.status==400){
+    alert("User does not exist.")
+  } else {
+    alert("Something went wrong.")
+  }
+}
+
 function logOut(){
   document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   localStorage.clear();
