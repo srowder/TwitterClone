@@ -200,6 +200,20 @@ ul {
     display: flex; 
     flex-direction: column; 
 }
+
+.post-head{
+    margin: 10px 0px;
+}
+
+.post-head-user{
+    margin-left:20px;
+    color:blue;
+}
+
+.profile-picture{
+
+}
+
 .post p {
     color: #666;
     word-wrap: break-word; 

@@ -51,24 +51,44 @@ async function displayUserPosts() {
     // Map through posts to generate HTML for each post
     const userPostHTML = posts.reverse().map(post => {
       var content = post.content; // Assuming your post object has a 'content' property
+      var dateTimePosted = post.dateTimePosted;
       var postDiv = document.createElement('div');
-      postDiv.className = 'post';
-      var profilePicture = document.createElement('img');
-      profilePicture.className = 'profile-picture';
-      profilePicture.src = post.profilePictureURL; // Assuming your post object has a 'profilePictureURL' property
-      var postContent = document.createElement('p');
-      postContent.textContent = content;
-      var likeButton = document.createElement('button');
-      likeButton.className = 'likeBtn';
-      likeButton.textContent = 'Like';
-      var likeCount = document.createElement('span');
-      likeCount.className = 'likeCount'; 
-      likeCount.textContent = '0';
+            postDiv.className = 'post';
 
-      postDiv.appendChild(profilePicture);
-      postDiv.appendChild(postContent);
-      postDiv.appendChild(likeButton);
-      postDiv.appendChild(likeCount); 
+            var postHead = document.createElement('div')
+            postHead.className = 'post-head'
+
+            var postUser = document.createElement('span')
+            postUser.className = "post-head-user"
+            postUser.textContent = username;
+            console.log(postUser + "hello");
+
+            var postTime = document.createElement('span')
+            postTime.className = "post-head-user"
+            postTime.textContent = dateTimePosted;
+            
+            var profilePicture = document.createElement('img');
+            profilePicture.className = 'profile-picture';
+            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+          
+            postHead.appendChild(profilePicture);
+            postHead.appendChild(postUser);
+            postHead.appendChild(postTime);
+
+            var postContent = document.createElement('p');
+            postContent.textContent = content;
+            var likeButton = document.createElement('button');
+            likeButton.className = 'likeBtn';
+            likeButton.textContent = 'Like';
+            var likeCount = document.createElement('span');
+            likeCount.className = 'likeCount'; 
+            likeCount.textContent = '0';
+
+            postDiv.appendChild(postHead);
+            postDiv.appendChild(postContent);
+            postDiv.appendChild(likeButton);
+            postDiv.appendChild(likeCount); 
+
 
       likeButton.addEventListener('click', function() {
           if (likeButton.textContent === 'Like') {
