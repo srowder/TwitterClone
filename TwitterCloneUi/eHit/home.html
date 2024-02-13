@@ -98,11 +98,13 @@
     <script>
         // Retrieve the username from localStorage
         var username = localStorage.getItem('username');
+        
         document.addEventListener('DOMContentLoaded', function () {
 
         // Display the username in the username container
         const usernameDisplay = document.getElementById('username-display');
         usernameDisplay.textContent = username;
+        
         displayUserPosts();
         });
 
@@ -156,7 +158,7 @@
          //posting logic
             document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); //prevents the default submission behavior
-
+            const currentDate = new Date().toISOString();
             userPost();
 
             var content = document.getElementById('postContent').value;            
@@ -173,6 +175,7 @@
 
             var postTime = document.createElement('span')
             postTime.className = "post-head-user"
+            postTime.textContent = currentDate;
 
             
             var profilePicture = document.createElement('img');
