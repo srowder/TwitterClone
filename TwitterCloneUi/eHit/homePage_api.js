@@ -135,6 +135,29 @@ async function displayUserPosts() {
 }
 
 /* Follow Related Fetch Requests */
+getFollowedUsers()
+async function getFollowedUsers(){
+  let currUser = localStorage.getItem('username');
+  let endpoint = `http://localhost:3000/api/v1/users/${currUser}/following`
+
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  const res = await fetch(endpoint, requestOptions)
+    if(res.status==200){
+      const data = await res.text();
+      localStorage.setItem('followedUsers', data)
+    } else{
+      console.log("Cannot retrieve followed users.")
+    }
+}
+
 async function followUser(){
   let userToFollow = document.getElementById('search-user-1').value;
   let currUser = localStorage.getItem('username');
@@ -164,6 +187,9 @@ async function followUser(){
   }
 }
 
+async function unfollowUsers(){
+
+}
 /* Other Functions */
 function logOut(){
   document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
