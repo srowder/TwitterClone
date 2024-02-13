@@ -79,14 +79,18 @@
     </div>
     
     <script>
+        // Retrieve the username from localStorage
+        var username = localStorage.getItem('username');
         document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve the username from localStorage
-            const username = localStorage.getItem('username');
-    
-            // Display the username in the username container
-            const usernameDisplay = document.getElementById('username-display');
-            usernameDisplay.textContent = username;
+
+        // Display the username in the username container
+        const usernameDisplay = document.getElementById('username-display');
+        usernameDisplay.textContent = username;
+        displayUserPosts();
         });
+
+        
+
 
         function toggleSearchButton() {
         var inputText = document.getElementById('search-user-1').value;
@@ -131,13 +135,14 @@
         //     }
         // }
 
-         //posting logic
-         document.getElementById('postForm').addEventListener('submit', function(event) {
-            event.preventDefault(); //prevents the default submission behavior
-            
-            var content = document.getElementById('postContent').value;
 
-            
+         //posting logic
+            document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault(); //prevents the default submission behavior
+
+            userPost();
+
+            var content = document.getElementById('postContent').value;            
             var postDiv = document.createElement('div');
             postDiv.className = 'post';
             var profilePicture = document.createElement('img');
@@ -183,7 +188,9 @@
                 }
             });
         });
+
     </script>
+
 
 
 </body>

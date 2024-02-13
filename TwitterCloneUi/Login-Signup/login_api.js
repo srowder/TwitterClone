@@ -37,4 +37,7 @@ async function login(){
     else{
         alert("Something went wrong.")
     }
+
+    localStorage.setItem('token', data);
+
 }

@@ -40,6 +40,8 @@
             return await res.text()
         }
 
+        
+
         async function login() {
             const res = await fetch("/api/v1/auth/login", {
                 method: "POST",
@@ -56,10 +58,22 @@
 
         }
 
+        // async function post() {
+        //     const res = await fetch("/api/v1/posts", {
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             username: "job",
+        //             content: "Hello world. I'm using the newest and latest social media website!"
+        //         })
+        //     })
+        //     return await res.text()
+        // }
+
         async function start() {
             await helloWorld()
             await register()
             await login()
+            // await post()
         }
 
         start()
