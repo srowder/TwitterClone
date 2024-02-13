@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="profile.css">
+    <script src="homePage_api.js"></script>
 </head>
 <body>
     <div class="profile-container">
@@ -21,37 +22,42 @@
         </div>
         
         <div class="user-tweet-container">
-            <div class="user-tweet">
-                <ul>
-                    <li class="list-size">
-    
-                    </li>
+            <div id="postsContainer"></div>
 
-                    <li class="list-size">
-    
-                    </li>
+            <!-- Structure of Post When Created-->
+                <!-- <div class="post">
+                    <div class="post-head">
+                        <img class="profile-picture" src = 'sample_profile_picture.jpg'>
+                        <span>USERNAME</span>  
+                        <span>Time</span>                     
+                    </div>
+                    <p>
+                            Hello
+                    </p>
+                    <button class="likeBtn" >
 
-                    
-                    <li class="list-size">
-    
-                    </li>
-
-                    </li>
-                </ul>
-            </div>
+                    </button>
+                    <span class="likeCount"></span>
+                </div> -->
         </div>    
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve the username from localStorage
-            const username = localStorage.getItem('username');
-    
+         // Retrieve the username from localStorage
+        var username = localStorage.getItem('username');
+        document.addEventListener('DOMContentLoaded', function () { 
             // Display the username in the username container
             const usernameDisplay = document.getElementById('username-display');
             usernameDisplay.textContent = username;
+            console.log('hello')
+            displayUserPosts();
         });
+
+        
+
+        
     </script>
+    
 
    
 </body>
