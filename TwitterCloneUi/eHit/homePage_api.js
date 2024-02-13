@@ -10,6 +10,29 @@ function getCookie(cookieName) {
     return cookie[cookieName];
   }
 
+/* Existing User List Retrieval */
+getUsers()
+let existingUsers = JSON.parse(localStorage.getItem("userArray"))
+
+async function getUsers(){
+  var myHeaders = new Headers()
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  const res = await fetch("http://localhost:3000/api/v1/users", requestOptions)
+    if(res.status==200){
+      const data = await res.text();
+      localStorage.setItem('userArray', data)
+    } else {
+      console.log("Error")
+    }
+}
+
 //TO USE POST API. APPENDS THE POSTS TO POST.JSON
 async function userPost() {
     console.log(token);
@@ -117,10 +140,6 @@ async function followUser(){
   let currUser = localStorage.getItem('username');
   let endpoint = `http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`;
 
-  console.log(userToFollow)
-  console.log(currUser)
-  console.log(endpoint)
-
   var myHeaders = new Headers()
   myHeaders.append('Authorization', `Bearer ${token}`);
 
@@ -133,16 +152,19 @@ async function followUser(){
   redirect: 'follow'
   };
 
-  const res = await fetch(endpoint, requestOptions)
-  if(res.status==201){
-    alert("User followed")
-  } else if (res.status==400){
-    alert("User does not exist.")
+  if(existingUsers.includes(userToFollow)){
+    const res = await fetch(endpoint, requestOptions)
+    if(res.status==201){
+      alert("User followed")
+    } else {
+      alert("Something went wrong.")
+    }
   } else {
-    alert("Something went wrong.")
+    alert("User to follow does not exist")
   }
 }
 
+/* Other Functions */
 function logOut(){
   document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
   localStorage.clear();
