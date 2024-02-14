@@ -8,6 +8,9 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="homePage_api.js"></script>
+    <script src="homeScript.js"></script>
+    <script src="follow_api.js"></script>
+    <script src="post_api.js"></script>
 </head>
 
 <body>
@@ -37,6 +40,8 @@
                 <input type="text" class="searchBox" id="search-user-1" placeholder="Enter username" oninput="toggleSearchButton()">
                 <button id="clearButton" style="display: none;" onclick="followUser()">x</button>
             </div>
+
+            <div class="user-list"></div>
 
             <!-- <div class="user-follow">
                 <label id="Label2">User 2 </label>

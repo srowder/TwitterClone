@@ -107,6 +107,10 @@ html {
     border-radius: 5px;
 }
 
+.user-list {
+    display:flex;
+}
+
 .searchBox {
     border: none;
     padding: 10px;
