@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,17 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link rel="stylesheet" href="index.css"/>
+
 </head>
 
 <body>
-    <a href="/eHit/home.html">Home</a><br/>
-    <a href="/Login-Signup/login.html">Login</a><br/>
-    <a href="/Login-Signup/signup.html">Sign Up</a>
-    <br/><br/>
-    This page is for testing for now.<br/>
-    Main page soon...
+    
+    <div id="logo-container">
+        <img src="/Login-Signup/Images/twitter-logo.png" alt="Logo Image">
+    </div>
 
+    <div id="menu-container">
+        <div id="title">
+            Welcome to eHit
+        </div>
+    
+        <div id="signup-container">
+            <label>Join today</label>
+            <button id="signupButton" onclick="signUp()">Sign Up</button> 
+        </div>
+        
+        <div id="login-container" onclick="logIn()">
+            <label>Already have an account?</label>
+            <button id="loginButton">Login</button>
+        </div>
+    </div>
 
     <script>
         async function helloWorld() {
@@ -69,16 +81,23 @@
         //     return await res.text()
         // }
 
+        function signUp(){
+            window.location.href = "/Login-Signup/signup.html";
+        }
+
+        function logIn(){
+            window.location.href = "/Login-Signup/login.html";
+        }
+
         async function start() {
             await helloWorld()
             await register()
             await login()
             // await post()
         }
-
+        
         start()
     </script>
-    <p>Hello world. This is a sample page. Check the console to see if the front end is connected to the UI! </p>
 </body>
 
 </html>
