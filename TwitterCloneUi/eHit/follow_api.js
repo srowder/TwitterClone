@@ -22,7 +22,22 @@ async function getFollowedUsers() {
 }
 
 function populateUserList() {
-    
+  for (i = 0; i < existingUsers.length; i++){
+    let userDiv = document.createElement('div');
+    userDiv.class="userDiv";
+    userDiv.id=existingUsers[i];
+    document.getElementById("user-list").appendChild(userDiv);
+      let userDivText = document.createElement('p');
+      userDivText.textContent = existingUsers[i];
+      document.getElementById(existingUsers[i]).appendChild(userDivText)
+
+      let followBtn = document.createElement('button');
+      followBtn.textContent = "Follow";
+      followBtn.value = existingUsers[i];
+      followBtn.onclick = () => click_followUser(followBtn.value);
+      document.getElementById(existingUsers[i]).appendChild(followBtn);
+  }
+
 }
 
 /*  FETCH REQUESTS: */
@@ -60,6 +75,9 @@ async function click_followUser(user){
     const userToFollow = user;
     const endpoint = `http://localhost:3000/api/v1/users/${currUser}/following/${userToFollow}`;
 
+    let myHeaders = new Headers()
+    myHeaders.append('Authorization', `Bearer ${token}`);
+
     let raw = "";
 
     let requestOptions = {
@@ -71,7 +89,7 @@ async function click_followUser(user){
 
     const res = await fetch(endpoint, requestOptions)
     if(res.status==201) {
-        alert("User followed.")
+        alert(`Successfully followed ${user}`)
     } else {
         alert("Something went wrong.")
     }
@@ -81,6 +99,9 @@ async function click_unfollowUser(user){
     const currUser = localStorage.getItem('username');
     const userToUnfollow = user;
     const endpoint = `http://localhost:3000/api/v1/users/${currUser}/following/${userToUnfollow}`;
+
+    let myHeaders = new Headers()
+    myHeaders.append('Authorization', `Bearer ${token}`);
 
     let raw = "";
 
