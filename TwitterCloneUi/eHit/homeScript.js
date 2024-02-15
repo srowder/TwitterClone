@@ -36,5 +36,5 @@ async function getUsers(){
 function logOut(){
     document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
     localStorage.clear();
-    window.location.href = "../Login-Signup/login.html";
+    window.location.href = "..";
   }
