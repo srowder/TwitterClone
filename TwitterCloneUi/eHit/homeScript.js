@@ -34,9 +34,9 @@ async function getUsers(){
 }
 
 /* Window Onload Functions */
-window.onload=function(){
-  populateUserList()
-}
+// window.onload=function(){
+//   populateUserList()
+// }
 
 function logOut(){
     document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";

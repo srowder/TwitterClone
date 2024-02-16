@@ -13,62 +13,87 @@ async function getFollowedUsers() {
   };
 
   const res = await fetch(endpoint, requestOptions)
+
     if(res.status==200){
       const data = await res.text();
       localStorage.setItem('followedUsers', data)
+      // console.log(data + "This is RES TEXT");   
     } else{
       console.log("Cannot retrieve followed users.")
     }
+
 }
-
-function populateUserList() {
-
+async function populateUserList() {
   if (!existingUsers || existingUsers.length === 0) {
-    console.error('existingUsers is null or empty');
-    window.location.reload(); 
-    return;
+      console.error('existingUsers is null or empty');
+      window.location.reload();
+      return;
   }
 
+  await getFollowedUsers();
 
-  for (let i = 0; i < existingUsers.length; i++){
+  const followedUsers = JSON.parse(localStorage.getItem('followedUsers')) || [];
+  // console.log(localStorage.getItem('followedUsers'))
+  console.log(followedUsers);
 
-    if (existingUsers[i] === username) {
-      continue;
-    }
+  for (let i = 0; i < existingUsers.length; i++) {
+      if (existingUsers[i] === username) {
+          continue;
+      }
 
-    let userDiv = document.createElement('div');
-    userDiv.className = "userDiv"; // Use className instead of class
-    userDiv.id = existingUsers[i];
-    document.getElementById("user-list").appendChild(userDiv);
+      let userDiv = document.createElement('div');
+      userDiv.className = "userDiv";
+      userDiv.id = existingUsers[i];
+      document.getElementById("user-list").appendChild(userDiv);
 
-    let userDivText = document.createElement('p');
-    userDivText.textContent = existingUsers[i];
-    document.getElementById(existingUsers[i]).appendChild(userDivText);
+      let userDivText = document.createElement('p');
+      userDivText.textContent = existingUsers[i];
+      document.getElementById(existingUsers[i]).appendChild(userDivText);
 
-    let followBtn = document.createElement('button');
-    followBtn.textContent = "Follow";
-    followBtn.value = existingUsers[i];
-    followBtn.onclick = () => CheckButton(followBtn);
-    // followBtn.onclick = () => click_followUser(followBtn.value);
-    document.getElementById(existingUsers[i]).appendChild(followBtn);
+      let followBtn = document.createElement('button');
+      followBtn.value = existingUsers[i];
+
+      // console.log(followedUsers);
+      // console.log(existingUsers[i]);
+
+      // Check if the user is followed and set button text accordingly
+      if (followedUsers.includes(existingUsers[i])) {
+          followBtn.textContent = "Unfollow";
+      } else {
+          followBtn.textContent = "Follow";
+      }
+
+      followBtn.onclick = () => CheckButton(followBtn);
+      document.getElementById(existingUsers[i]).appendChild(followBtn);
   }
 }
 
 
-function CheckButton(followBtn) {
-  // Access the button properties
+async function CheckButton(followBtn) {
   let userId = followBtn.value;
   let buttonText = followBtn.textContent;
 
   if (buttonText === "Follow") {
-    // Change button text to "Unfollow"
-    followBtn.textContent = "Unfollow";
-    click_followUser(followBtn.value);
+      followBtn.textContent = "Unfollow";
+      await click_followUser(userId);
+      // Update the followed users list in localStorage
+      updateFollowedUsers(userId, true);
   } else if (buttonText === "Unfollow") {
-    // Change button text to "Follow"
-    followBtn.textContent = "Follow";
-    click_unfollowUser(followBtn.value);
+      followBtn.textContent = "Follow";
+      await click_unfollowUser(userId);
+      // Update the followed users list in localStorage
+      updateFollowedUsers(userId, false);
   }
+}
+
+function updateFollowedUsers(userId, followStatus) {
+  let followedUsers = JSON.parse(localStorage.getItem('followedUsers')) || [];
+  if (followStatus) {
+      followedUsers.push(userId);
+  } else {
+      followedUsers = followedUsers.filter(user => user !== userId);
+  }
+  localStorage.setItem('followedUsers', JSON.stringify(followedUsers));
 }
 
 /*  FETCH REQUESTS: */
