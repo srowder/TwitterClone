@@ -15,9 +15,11 @@
             <button id="return-button" onclick="returnHome()">X</button>
         </div>
         <div class="header-container">
-            <div class='profile-image-container'>
-                <div class="image"></div>
+           
+            <div class="image">
+                <img id="profile-pic"></img>
             </div>
+          
             <div class="text-headers">
                 <span class="text-username" id="username-display">Username</span>
             </div>
@@ -57,6 +59,28 @@
             console.log('hello')
             displayUserPosts();
         });
+
+        
+        const profilePictureDisplay = document.getElementById('profile-pic');
+
+        function imageExists(url, callback) {
+        var img = new Image();
+        img.onload = function () {
+            callback(true);
+        };
+        img.onerror = function () {
+            callback(false);
+        };
+        img.src = url;
+        }
+
+        const defaultImagePath = "/eHit/Images/user.png";
+
+        imageExists("/eHit/Images/" + username + ".png", function (exists) {
+        // Set the image source based on whether it exists or not
+        profilePictureDisplay.src = exists ? "/eHit/Images/" + username + ".png" : defaultImagePath;
+        });
+
 
         document.addEventListener('click', function(event) {
         // Check if the clicked element has the class 'likeBtn'

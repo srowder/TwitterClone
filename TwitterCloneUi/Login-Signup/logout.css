@@ -27,6 +27,7 @@ body,html{
     height: auto;
     border: 5px solid black;
     border-left: 0px;
+    border-radius: 0px 0px 50px 0px;
 }
 
 
@@ -47,6 +48,7 @@ body,html{
     height: 500px;
     border: 5px solid black;
     color: white;
+    border-radius: 50px 0px 0px 0px;
 }
 
 .header-text{

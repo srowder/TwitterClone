@@ -158,6 +158,12 @@ html {
 #sign-out-button {
     border-radius: 5px;
     padding: 1px;
+    transition: 0.3s;
+}
+
+#sign-out-button:hover {
+    background-color: #333;
+    color: white;
 }
 
 #trending-container {
@@ -232,6 +238,7 @@ input[type="radio"] {
 label {
     color: white;
     transition: background-color 0.3s;
+    cursor: pointer;
 } 
 
 input[type="radio"]:checked + label {
@@ -352,7 +359,7 @@ form textarea {
 }
 
 .likeBtn {
-    background-color: white;
+    background-color: #3498DB;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -360,10 +367,11 @@ form textarea {
     cursor: pointer;
     margin-left: auto;
     transition: 0.3s;
+    min-width: 70px;
 }
 
 .likeBtn:hover {
-    background-color: #2980b9;
+    background-color: #093b5d;
 }
 
 .likeCount {
