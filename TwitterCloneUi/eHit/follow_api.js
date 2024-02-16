@@ -47,10 +47,12 @@ async function populateUserList() {
       document.getElementById("user-list").appendChild(userDiv);
 
       let userDivText = document.createElement('p');
+      userDivText.className = "userNameText";
       userDivText.textContent = existingUsers[i];
       document.getElementById(existingUsers[i]).appendChild(userDivText);
 
       let followBtn = document.createElement('button');
+      followBtn.className = "userFollowBtn";
       followBtn.value = existingUsers[i];
 
       // console.log(followedUsers);
