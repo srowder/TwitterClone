@@ -19,7 +19,10 @@ async function userPost() {
     } catch (error) {
         console.error('Error posting:', error);
     }
+    
+    
 }
+
 
 async function displayUserPosts() {
   try {
@@ -50,7 +53,7 @@ async function displayUserPosts() {
 
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       const formattedDate = date.toLocaleDateString('en-US', options);
-
+      var postId = post.postId;
       //For Speciific Date with Time
       // const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
       // const formattedDate = date.toLocaleString('en-US', options);
@@ -84,6 +87,7 @@ async function displayUserPosts() {
             var likeButton = document.createElement('button');
             likeButton.className = 'likeBtn';
             likeButton.textContent = 'Like';
+            likeButton.setAttribute('postId', postId);
             var likeCount = document.createElement('span');
             likeCount.className = 'likeCount'; 
             likeCount.textContent = post.likes.length;
@@ -146,7 +150,7 @@ async function DisplayFollowing() {
 
       var dateTimePosted = formattedDate;
 
-
+      var postId = post.postId;
       var postedBy = post.postedBy;
       var postDiv = document.createElement('div');
             postDiv.className = 'post';
@@ -176,6 +180,7 @@ async function DisplayFollowing() {
             var likeButton = document.createElement('button');
             likeButton.className = 'likeBtn';
             likeButton.textContent = 'Like';
+            likeButton.setAttribute('postId', postId);
             var likeCount = document.createElement('span');
             likeCount.className = 'likeCount'; 
             likeCount.textContent = post.likes.length;
@@ -291,42 +296,3 @@ async function DisplayUserAndFollowing() {
 }
 
 
-
-
-const likePost = function(event){
-  const parentDiv = event.target.parentNode;
-  console.log(this.id)
-  const postID = this.id;
-
-  const likeCountElement = parentDiv.querySelector('.likeCount');
-
-  let newLikeCount = parseInt(likeCountElement.textContent);
-  newLikeCount++;
-
-  //likeCountElement.textContent = newLikeCount;
-
-  const likeBtn = parentDiv.querySelector('.likePostBtn');
-  likeBtn.textContent = "Unlike"
-  likeBtn.removeEventListener('click', likePost)
-
-  var raw = JSON.stringify({
-      "action": "like"
-  });
-
-  var requestOptions = {
-      method: 'PATCH',
-      headers: {
-          'Content-Type': 'application/json',
-          Authorization: token
-      },
-      body: raw,
-      redirect: 'follow'
-  };
-
-  fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-  likeBtn.addEventListener('click', unlikePost)
-}

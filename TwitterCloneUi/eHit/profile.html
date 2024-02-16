@@ -27,7 +27,7 @@
         </div>
         
         <div class="user-tweet-container">
-            <div id="postsContainer"></div>
+            <div id='postsContainer'></div>
 
             <!-- Structure of Post When Created-->
                 <!-- <div class="post">
@@ -48,14 +48,115 @@
     </div>
 
     <script>
-         // Retrieve the username from localStorage
-        var username = localStorage.getItem('username');
-        document.addEventListener('DOMContentLoaded', function () { 
-            // Display the username in the username container
-            const usernameDisplay = document.getElementById('username-display');
-            usernameDisplay.textContent = username;
-            console.log('hello')
-            displayUserPosts();
+       var username = localStorage.getItem('username');
+        
+        document.addEventListener('DOMContentLoaded', function () {
+
+        // Display the username in the username container
+        const usernameDisplay = document.getElementById('username-display');
+        usernameDisplay.textContent = username;
+
+        const profilePictureDisplay = document.getElementById('profile-pic');
+
+        displayUserPosts();
+        populateUserList();
+
+
+
+        function imageExists(url, callback) {
+        var img = new Image();
+        img.onload = function () {
+            callback(true);
+        };
+        img.onerror = function () {
+            callback(false);
+        };
+        img.src = url;
+    }
+
+        const defaultImagePath = "/eHit/Images/user.png";
+
+        imageExists("/eHit/Images/" + username + ".png", function (exists) {
+        // Set the image source based on whether it exists or not
+        profilePictureDisplay.src = exists ? "/eHit/Images/" + username + ".png" : defaultImagePath;
+        });
+
+        const postsContainer = document.getElementById('postsContainer');
+
+        document.addEventListener('click', function(event) {
+    // Check if the clicked element has the class 'likeBtn'
+    if (event.target.classList.contains('likeBtn')) {
+        // Get the postId attribute of the clicked button
+        var postId = event.target.getAttribute('postId');
+        console.log('postId:', postId);
+
+        var btnContent = event.target.textContent;
+        console.log('Button Content:', btnContent);
+
+        if (btnContent === "Like") {
+            // Add your code here if the button content is "Like"
+            console.log("Button content is 'Like'. Add your code here.");
+
+            try {
+                const res = fetch(`/api/v1/posts/${postId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: "like"
+                    })
+                });
+
+                reloadOnce()
+
+                if (!res.ok) {
+                    console.error(`Error: ${res.status} ${res.statusText}`);
+                    return;
+                }
+
+                
+
+                const responseText = res.text();  // corrected syntax
+            } catch (error) {
+                console.error(`Error:`, error);
+            }
+
+            
+
+        } else {
+            // Add your code here if the button content is not "Like"
+            console.log("Button content is not 'Like'. Add your code here.");
+            try {
+                const res = fetch(`/api/v1/posts/${postId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: "unlike"
+                    })
+                });
+
+                reloadOnce()
+
+                if (!res.ok) {
+                    console.error(`Error: ${res.status} ${res.statusText}`);
+                    return;
+                }
+
+               
+                const responseText = res.text();  // corrected syntax
+                reloadOnce()
+            } catch (error) {
+                console.error(`Error:`, error);
+            }
+           
+        }
+    }
+});
         });
 
         
