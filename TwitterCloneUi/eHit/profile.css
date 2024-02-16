@@ -8,6 +8,15 @@ body, html {
     background-color: #36454F;
 }
 
+.return-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#return-button {
+    border-radius: 5px;
+}
+
 .header-container {
     position: sticky; 
     top: 0;
@@ -63,7 +72,7 @@ body, html {
 } */
 
 .user-tweet-container {
-    max-height: 300px; /* Set a maximum height for the container */
+    max-height: 500px; /* Set a maximum height for the container */
     overflow-y: auto; /* Enable vertical scrollbar when content overflows */
     margin-top: 20px; /* Add some top margin for spacing */
     margin-left: -40px;
@@ -84,6 +93,8 @@ body, html {
 
 .post-head{
     margin: 10px 0px;
+    display: flex;
+    align-items: center;
 }
 
 .post-head-user{
@@ -92,7 +103,9 @@ body, html {
 }
 
 .profile-picture{
-
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
 }
 
 .post p {
