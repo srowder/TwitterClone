@@ -69,9 +69,10 @@ async function populateUserList() {
       document.getElementById(existingUsers[i]).appendChild(followBtn);
   }
 }
-let hasReloaded = false;
+
 
 function reloadOnce() {
+  let hasReloaded = false;
     if (!hasReloaded) {
         window.location.reload();
         hasReloaded = true;

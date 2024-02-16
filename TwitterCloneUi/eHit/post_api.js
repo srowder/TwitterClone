@@ -41,7 +41,7 @@ async function displayUserPosts() {
      postsContainer.innerHTML = '';
 
     // Map through posts to generate HTML for each post
-    const userPostHTML = posts.reverse().map(post => {
+    const userPostHTML = posts.reverse().map((post, index) => {
       var content = post.content; // Assuming your post object has a 'content' property
 
       const timestamp = post.dateTimePosted;
@@ -66,7 +66,6 @@ async function displayUserPosts() {
             var postUser = document.createElement('span')
             postUser.className = "post-head-user"
             postUser.textContent = username;
-            console.log(postUser + "hello");
 
             var postTime = document.createElement('span')
             postTime.className = "post-head-user"
@@ -87,26 +86,19 @@ async function displayUserPosts() {
             likeButton.textContent = 'Like';
             var likeCount = document.createElement('span');
             likeCount.className = 'likeCount'; 
-            likeCount.textContent = '0';
+            likeCount.textContent = post.likes.length;
 
             postDiv.appendChild(postHead);
             postDiv.appendChild(postContent);
             postDiv.appendChild(likeButton);
             postDiv.appendChild(likeCount); 
 
-
-      likeButton.addEventListener('click', function() {
-          if (likeButton.textContent === 'Like') {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes + 1;
+            if (post.likes.includes(localStorage.getItem('username'))) {
               likeButton.textContent = 'Unlike';
-          } else {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes - 1;
+            } else {
               likeButton.textContent = 'Like';
-          }
-      });
-
+            }
+      console.log('Index:', index); // Log the index here
       return postDiv.outerHTML; // Return the HTML content for this post
       }).join(''); // Join all HTML content into a single string
 
@@ -138,7 +130,7 @@ async function DisplayFollowing() {
     const userPostHTML = posts
       .filter(post => post.postedBy !== username)
       .sort((a, b) => new Date(b.dateTimePosted) - new Date(a.dateTimePosted))
-      .map(post => {
+      .map((post, index) => {
       var content = post.content; // Assuming your post object has a 'content' property
 
       const timestamp = post.dateTimePosted;
@@ -186,26 +178,19 @@ async function DisplayFollowing() {
             likeButton.textContent = 'Like';
             var likeCount = document.createElement('span');
             likeCount.className = 'likeCount'; 
-            likeCount.textContent = '0';
+            likeCount.textContent = post.likes.length;
 
             postDiv.appendChild(postHead);
             postDiv.appendChild(postContent);
             postDiv.appendChild(likeButton);
             postDiv.appendChild(likeCount); 
-
-
-      likeButton.addEventListener('click', function() {
-          if (likeButton.textContent === 'Like') {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes + 1;
+      
+            if (post.likes.includes(localStorage.getItem('username'))) {
               likeButton.textContent = 'Unlike';
-          } else {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes - 1;
+            } else {
               likeButton.textContent = 'Like';
-          }
-      });
-
+            }
+      console.log("Index of the post:", index);
       return postDiv.outerHTML; // Return the HTML content for this post
       }).join(''); // Join all HTML content into a single string
 
@@ -228,82 +213,120 @@ async function DisplayUserAndFollowing() {
       return;
     }
 
-     // Clear the postsContainer before appending new posts
-     postsContainer.innerHTML = '';
+    // Clear the postsContainer before appending new posts
+    postsContainer.innerHTML = '';
 
     const posts = await res.json();
 
     // Map through posts to generate HTML for each post
     const userPostHTML = posts
       .sort((a, b) => new Date(b.dateTimePosted) - new Date(a.dateTimePosted))
-      .map(post => {
-      var content = post.content; // Assuming your post object has a 'content' property
-      const timestamp = post.dateTimePosted;
-      const date = new Date(timestamp);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = date.toLocaleDateString('en-US', options);
+      .map((post, index) => { 
+        var content = post.content; // Assuming your post object has a 'content' property
+        const timestamp = post.dateTimePosted;
+        const date = new Date(timestamp);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options);
 
-      //For Speciific Date with Time
-      // const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-      // const formattedDate = date.toLocaleString('en-US', options);
+        //For Specific Date with Time
+        // const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        // const formattedDate = date.toLocaleString('en-US', options);
 
-      var dateTimePosted = formattedDate;
-      var postedBy = post.postedBy;
-      var postDiv = document.createElement('div');
-            postDiv.className = 'post';
+        var dateTimePosted = formattedDate;
+        var postedBy = post.postedBy;
+        var postDiv = document.createElement('div');
+        var postId = post.postId;
+        postDiv.className = 'post';
+        postDiv.setAttribute('postId', postId);
 
-            var postHead = document.createElement('div')
-            postHead.className = 'post-head'
+        var postHead = document.createElement('div')
+        postHead.className = 'post-head'
 
-            var postUser = document.createElement('span')
-            postUser.className = "post-head-user"
-            postUser.textContent = postedBy;
-            console.log(postUser + "hello");
+        var postUser = document.createElement('span')
+        postUser.className = "post-head-user"
+        postUser.textContent = postedBy;
 
-            var postTime = document.createElement('span')
-            postTime.className = "post-head-user"
-            postTime.textContent = dateTimePosted;
-            
-            var profilePicture = document.createElement('img');
-            profilePicture.className = 'profile-picture';
-            profilePicture.src = '../eHit/Images/'+postedBy+'.png'; //change to pfp set by the userr
-          
-            postHead.appendChild(profilePicture);
-            postHead.appendChild(postUser);
-            postHead.appendChild(postTime);
+        var postTime = document.createElement('span')
+        postTime.className = "post-head-user"
+        postTime.textContent = dateTimePosted;
+        
+        var profilePicture = document.createElement('img');
+        profilePicture.className = 'profile-picture';
+        profilePicture.src = '../eHit/Images/'+postedBy+'.png'; //change to pfp set by the user
+      
+        postHead.appendChild(profilePicture);
+        postHead.appendChild(postUser);
+        postHead.appendChild(postTime);
 
-            var postContent = document.createElement('p');
-            postContent.textContent = content;
-            var likeButton = document.createElement('button');
-            likeButton.className = 'likeBtn';
-            likeButton.textContent = 'Like';
-            var likeCount = document.createElement('span');
-            likeCount.className = 'likeCount'; 
-            likeCount.textContent = '0';
+        var postContent = document.createElement('p');
+        postContent.textContent = content;
+        var likeButton = document.createElement('button');
+        likeButton.className = 'likeBtn';
+        likeButton.setAttribute('postId', postId);
 
-            postDiv.appendChild(postHead);
-            postDiv.appendChild(postContent);
-            postDiv.appendChild(likeButton);
-            postDiv.appendChild(likeCount); 
+        var likeCount = document.createElement('span');
+        likeCount.className = 'likeCount'; 
+        likeCount.textContent = post.likes.length;
 
+        const postIDex = likeButton.getAttribute('postId');
+        console.log(postIDex);
 
-      likeButton.addEventListener('click', function() {
-          if (likeButton.textContent === 'Like') {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes + 1;
-              likeButton.textContent = 'Unlike';
-          } else {
-              var currentLikes = parseInt(likeCount.textContent);
-              likeCount.textContent = currentLikes - 1;
-              likeButton.textContent = 'Like';
-          }
-      });
+        postDiv.appendChild(postHead);
+        postDiv.appendChild(postContent);
+        postDiv.appendChild(likeButton);
+        postDiv.appendChild(likeCount); 
 
-      return postDiv.outerHTML; // Return the HTML content for this post
+        if (post.likes.includes(localStorage.getItem('username'))) {
+          likeButton.textContent = 'Unlike';
+        } else {
+          likeButton.textContent = 'Like';
+        }
+        return postDiv.outerHTML; // Return the HTML content for this post
       }).join(''); // Join all HTML content into a single string
 
-      postsContainer.innerHTML += userPostHTML;
-    } catch (error) {
-      console.error('Error fetching all following posts:', error);
-    }
+    postsContainer.innerHTML += userPostHTML;
+  } catch (error) {
+    console.error('Error fetching all following posts:', error);
+  }
+}
+
+
+
+
+const likePost = function(event){
+  const parentDiv = event.target.parentNode;
+  console.log(this.id)
+  const postID = this.id;
+
+  const likeCountElement = parentDiv.querySelector('.likeCount');
+
+  let newLikeCount = parseInt(likeCountElement.textContent);
+  newLikeCount++;
+
+  //likeCountElement.textContent = newLikeCount;
+
+  const likeBtn = parentDiv.querySelector('.likePostBtn');
+  likeBtn.textContent = "Unlike"
+  likeBtn.removeEventListener('click', likePost)
+
+  var raw = JSON.stringify({
+      "action": "like"
+  });
+
+  var requestOptions = {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          Authorization: token
+      },
+      body: raw,
+      redirect: 'follow'
+  };
+
+  fetch(`http://localhost:3000/api/v1/posts/${postID}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+  likeBtn.addEventListener('click', unlikePost)
 }

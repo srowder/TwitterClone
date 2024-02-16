@@ -166,9 +166,92 @@
         
         DisplayUserAndFollowing();
         populateUserList();
-        });
 
 
+        
+
+        const postsContainer = document.getElementById('postsContainer');
+
+        document.addEventListener('click', function(event) {
+    // Check if the clicked element has the class 'likeBtn'
+    if (event.target.classList.contains('likeBtn')) {
+        // Get the postId attribute of the clicked button
+        var postId = event.target.getAttribute('postId');
+        console.log('postId:', postId);
+
+        var btnContent = event.target.textContent;
+        console.log('Button Content:', btnContent);
+
+        if (btnContent === "Like") {
+            // Add your code here if the button content is "Like"
+            console.log("Button content is 'Like'. Add your code here.");
+
+            try {
+                const res = fetch(`/api/v1/posts/${postId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: "like"
+                    })
+                });
+
+                reloadOnce()
+
+                if (!res.ok) {
+                    console.error(`Error: ${res.status} ${res.statusText}`);
+                    return;
+                }
+
+                
+
+                const responseText = res.text();  // corrected syntax
+            } catch (error) {
+                console.error(`Error:`, error);
+            }
+
+            
+
+        } else {
+            // Add your code here if the button content is not "Like"
+            console.log("Button content is not 'Like'. Add your code here.");
+            try {
+                const res = fetch(`/api/v1/posts/${postId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: "unlike"
+                    })
+                });
+
+                reloadOnce()
+
+                if (!res.ok) {
+                    console.error(`Error: ${res.status} ${res.statusText}`);
+                    return;
+                }
+
+               
+                const responseText = res.text();  // corrected syntax
+                reloadOnce()
+            } catch (error) {
+                console.error(`Error:`, error);
+            }
+           
+        }
+    }
+});
+
+
+
+        
+
+           
         function toggleSearchButton() {
         var inputText = document.getElementById('search-user-1').value;
         var button = document.getElementById('clearButton');
@@ -179,6 +262,16 @@
             button.style.display = 'none';
         }
     }
+
+         // Example functions for like/unlike post actions
+         async function likePost(postId) {
+            // Implement your like post logic here
+            }
+
+            async function unlikePost(postId) {
+            // Implement your unlike post logic here
+            }
+                    });
 
         function clearText() {
             var inputElement = document.getElementById('search-user-1');
@@ -218,60 +311,6 @@
             event.preventDefault(); //prevents the default submission behavior
             const currentDate = new Date().toISOString();
             userPost();
-
-            // var content = document.getElementById('postContent').value;            
-            // var postDiv = document.createElement('div');
-            // postDiv.className = 'post';
-
-            // var postHead = document.createElement('div')
-            // postHead.className = 'post-head'
-
-            // var postUser = document.createElement('span')
-            // postUser.className = "post-head-user"
-            // postUser.textContent = username;
-
-
-            // var postTime = document.createElement('span')
-            // postTime.className = "post-head-user"
-            // postTime.textContent = currentDate;
-
-            
-            // var profilePicture = document.createElement('img');
-            // profilePicture.className = 'profile-picture';
-            // profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
-
-           
-            // postHead.appendChild(profilePicture);
-            // postHead.appendChild(postUser);
-            // postHead.appendChild(postTime);
-
-
-
-            // var postContent = document.createElement('p');
-            // postContent.textContent = content;
-            // var likeButton = document.createElement('button');
-            // likeButton.className = 'likeBtn';
-            // likeButton.textContent = 'Like';
-            // var likeCount = document.createElement('span');
-            // likeCount.className = 'likeCount'; 
-            // likeCount.textContent = '0';
-
-            // postDiv.appendChild(postHead);
-            // postDiv.appendChild(postContent);
-            // postDiv.appendChild(likeButton);
-            // postDiv.appendChild(likeCount); 
-
-            
-            // var postsContainer = document.getElementById('postsContainer');
-            // var placeholderText = postsContainer.querySelector('.placeholder-text');
-            // if (placeholderText) {
-                
-            //     postsContainer.removeChild(placeholderText);
-            // }
-            
-            // postsContainer.insertBefore(postDiv, postsContainer.firstChild);
-
-            
             document.getElementById('postContent').value = '';
 
         });
