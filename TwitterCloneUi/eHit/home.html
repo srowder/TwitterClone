@@ -32,9 +32,7 @@
             </div>
         </div>
       
-        <div id="users-container">
-            <!-- <h2>Users List</h2> -->
-            
+        <div id="users-container">            
             <!-- Potential User API Here -->
 
             <div class="search-container">
@@ -43,15 +41,7 @@
             </div>
 
             <div id="user-list"></div>
-
-            <!-- <div class="user-follow">
-                <label id="Label2">User 2 </label>
-                <button class="followButton" id="user-follow-2" onclick="toggleFollow(this)" onmouseover="hoverButton(this)" onmouseout="unhoverButton(this)">Follow</button>
-            </div>
-            <div class="user-follow">
-                <label id="Label3">User 3 </label>
-                <button class="followButton" id="user-follow-3" onclick="toggleFollow(this)" onmouseover="hoverButton(this)" onmouseout="unhoverButton(this)">Follow</button>
-            </div> -->
+            <!-- Insert user list api here -->
 
         </div>
     
@@ -108,8 +98,6 @@
     
             <!-- container for posts -->
             <div id="postsContainer">
-                <!-- <p class="placeholder-text">FOLLOW USERS TO SEE WHAT THEY ARE POSTING</p> -->
-
                 <!-- Structure of Post When Created-->
                 <!-- <div class="post">
                     <div class="post-head">
@@ -140,6 +128,7 @@
         const usernameDisplay = document.getElementById('username-display');
         usernameDisplay.textContent = username;
 
+        // Display Profile Picture based on username
         const profilePictureDisplay = document.getElementById('profile-pic');
 
         function imageExists(url, callback) {
@@ -151,7 +140,7 @@
             callback(false);
         };
         img.src = url;
-    }
+        }
 
         const defaultImagePath = "/eHit/Images/user.png";
 
@@ -165,13 +154,11 @@
         populateUserList();
 
 
-        
-
         const postsContainer = document.getElementById('postsContainer');
 
         document.addEventListener('click', function(event) {
-    // Check if the clicked element has the class 'likeBtn'
-    if (event.target.classList.contains('likeBtn')) {
+        // Check if the clicked element has the class 'likeBtn'
+        if (event.target.classList.contains('likeBtn')) {
         // Get the postId attribute of the clicked button
         var postId = event.target.getAttribute('postId');
         console.log('postId:', postId);
@@ -239,15 +226,9 @@
             } catch (error) {
                 console.error(`Error:`, error);
             }
-           
-        }
-    }
-});
-
-
-
-        
-
+            }
+            }
+        });
            
         function toggleSearchButton() {
         var inputText = document.getElementById('search-user-1').value;
@@ -258,17 +239,17 @@
         } else {
             button.style.display = 'none';
         }
-    }
+        }
 
-         // Example functions for like/unlike post actions
-         async function likePost(postId) {
-            // Implement your like post logic here
-            }
+        // Example functions for like/unlike post actions
+        async function likePost(postId) {
+        // Implement your like post logic here
+        }
 
-            async function unlikePost(postId) {
-            // Implement your unlike post logic here
-            }
-                    });
+        async function unlikePost(postId) {
+        // Implement your unlike post logic here
+        }
+        });
 
         function clearText() {
             var inputElement = document.getElementById('search-user-1');
@@ -276,34 +257,7 @@
             toggleSearchButton();
         }
 
-        // function toggleFollow(button) {
-        //     if (button.innerHTML === "Follow") {
-        //         button.innerHTML = "Following";
-        //         button.classList.remove("followButton");
-        //         button.classList.add("unfollowButton");
-        //     } else {
-        //         button.innerHTML = "Follow";
-        //         button.classList.remove("unfollowButton");
-        //         button.classList.add("followButton");
-        //     }
-        // }
-
-        // function hoverButton(button) {
-        //     if (button.innerHTML === "Following") {
-        //         button.classList.add("following");
-        //         button.innerHTML = "Unfollow";
-        //     }
-        // }
-
-        // function unhoverButton(button) {
-        //     if (button.innerHTML === "Unfollow") {
-        //         button.classList.remove("following");
-        //         button.innerHTML = "Following";
-        //     }
-        // }
-
-
-         //posting logic
+        //posting logic
         document.getElementById('postForm').addEventListener('submit', function(event) {
             event.preventDefault(); //prevents the default submission behavior
             const currentDate = new Date().toISOString();
@@ -355,8 +309,6 @@
         .catch(error => console.error('Error fetching data:', error));
 
     </script>
-
-
 
 </body>
 </html>

@@ -135,10 +135,11 @@ html {
     background-color: #FFFFFF;
     border-radius: 10px;
     border-color: #333;
+    transition: 0.3s;
 }
 
 .userFollowBtn:hover {
-    
+    background-color: lightslategrey;
 }
 
 .searchBox {
@@ -159,40 +160,6 @@ html {
     border-radius: 5px;
     padding: 1px;
 }
-
-/* 
-.user-follow {
-    margin-bottom: 10px;
-}
-
-.followButton,
-.unfollowButton {
-    display: inline-block;
-    text-align: center;
-    width: 100px;
-    min-width: 100px;
-    padding: 10px 10px;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-.followButton {
-    color: black;
-    background-color: white;
-}
-
-.followButton:hover {
-    background-color: lightgray;
-}
-
-.unfollowButton {
-    
-}
-
-.unfollowButton:hover {
-    color: red;
-    border-color: red;
-} */
 
 #trending-container {
     padding: 20px;
@@ -283,6 +250,12 @@ input[type="radio"]:checked + label {
 .menu-main {
     width: 50%;
     height: 100%;
+    transition: 0.3s;
+}
+
+.menu-main:hover {
+    background-color: #333;
+    color: white;
 }
 
 #logo-main,
@@ -295,14 +268,17 @@ input[type="radio"]:checked + label {
 
 /* POST BAR */
 
+main {
+    background-color: #2980b9;
+    padding: 5%;
+}
+
 .post {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
     margin-top: 20px;
     display: flex; 
     flex-direction: column; 
@@ -339,6 +315,7 @@ input[type="radio"]:checked + label {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s;
 }
 .postBtn:hover {
     background-color: #555;
@@ -348,11 +325,10 @@ form {
 }
 form input[type="text"],
 form textarea {
-    width: 90%;
+    width: 100%;
     padding: 10px;
-    margin-left: 4vh;
     margin-bottom: 10px;
-    margin-top: 50px;
+
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: none;
@@ -363,6 +339,15 @@ form textarea {
     color: #666;
 }
 
+#post-input-container {
+    display: flex;
+    justify-content: center;
+}
+
+#post-submit-container {
+    display: flex;
+    justify-content: flex-end;
+}
 
 .likeBtn {
     background-color: #3498db;
@@ -372,7 +357,9 @@ form textarea {
     border-radius: 3px;
     cursor: pointer;
     margin-left: auto;
+    transition: 0.3s;
 }
+
 .likeBtn:hover {
     background-color: #2980b9;
 }
@@ -380,12 +367,6 @@ form textarea {
 .likeCount {
     margin-left: auto; 
     color: #666;
-}
-
-/* Testing */
-
-main {
-    background-color: #2980b9;
 }
 
 /* Mobile Screen Size */
@@ -410,8 +391,8 @@ main {
 
     #desktop-nav {
         width: 100%;
-        position: relative; /* Adjusted position property */
-        z-index: 2; /* Lower z-index to appear below sidebar */
+        position: relative;
+        z-index: 2;
     }
     #desktop-header {
         width: 100%;
