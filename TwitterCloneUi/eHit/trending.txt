@@ -13,3 +13,8 @@
 #Enerio
 #Tuano
 #Ilano
+#DataStructure
+#API
+#JavaScript
+#HTML
+#CSS
