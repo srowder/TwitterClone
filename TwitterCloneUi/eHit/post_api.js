@@ -25,6 +25,7 @@ async function userPost() {
 
 
 async function displayUserPosts() {
+  localStorage.setItem('whereUser', "USERPOST");
   try {
     const res = await fetch(`/api/v1/posts?username=${username}`, {
       headers: {
@@ -113,6 +114,7 @@ async function displayUserPosts() {
 }
 
 async function DisplayFollowing() {
+  localStorage.setItem('whereUser', "FOLLOWINGPOST");
   try {
     const res = await fetch(`/api/v1/posts`, {
       headers: {
@@ -206,6 +208,7 @@ async function DisplayFollowing() {
 }
 
 async function DisplayUserAndFollowing() {
+  localStorage.setItem('whereUser', "BOTHPOST");
   try {
     const res = await fetch(`/api/v1/posts`, {
       headers: {

@@ -191,8 +191,16 @@
                         action: "like"
                     })
                 });
-
-                reloadOnce()
+                var whereUser = localStorage.getItem('whereUser');
+                if (whereUser === "BOTHPOST"){
+                    DisplayUserAndFollowing();
+                }
+                else if (whereUser === "FOLLOWINGPOST"){
+                    DisplayFollowing();
+                }
+                else{
+                    displayUserPosts();
+                }
 
                 if (!res.ok) {
                     console.error(`Error: ${res.status} ${res.statusText}`);
@@ -223,7 +231,17 @@
                     })
                 });
 
-                reloadOnce()
+                var whereUser = localStorage.getItem('whereUser');
+                if (whereUser === "BOTHPOST"){
+                    DisplayUserAndFollowing();
+                }
+                else if (whereUser === "FOLLOWINGPOST"){
+                    DisplayFollowing();
+                }
+                else{
+                    displayUserPosts();
+                }
+
 
                 if (!res.ok) {
                     console.error(`Error: ${res.status} ${res.statusText}`);
