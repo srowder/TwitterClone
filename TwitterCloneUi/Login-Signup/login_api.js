@@ -27,8 +27,9 @@ async function login(){
     };
 
     const res = await fetch("http://localhost:3000/api/v1/auth/login", requestOptions)
-    if(res.status==200){
+    if(res.status==200){        
         const data = await res.text();
+        localStorage.setItem('token', data);
         document.cookie = "loginToken=" + data + ";path=/";
         window.location.href = "../eHit/home.html";
     } else if(res.status==401){
