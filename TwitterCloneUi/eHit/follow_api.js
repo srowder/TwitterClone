@@ -67,7 +67,14 @@ async function populateUserList() {
       document.getElementById(existingUsers[i]).appendChild(followBtn);
   }
 }
+let hasReloaded = false;
 
+function reloadOnce() {
+    if (!hasReloaded) {
+        window.location.reload();
+        hasReloaded = true;
+    }
+}
 
 async function CheckButton(followBtn) {
   let userId = followBtn.value;
@@ -78,11 +85,13 @@ async function CheckButton(followBtn) {
       await click_followUser(userId);
       // Update the followed users list in localStorage
       updateFollowedUsers(userId, true);
+      reloadOnce();
   } else if (buttonText === "Unfollow") {
       followBtn.textContent = "Follow";
       await click_unfollowUser(userId);
       // Update the followed users list in localStorage
       updateFollowedUsers(userId, false);
+      reloadOnce();
   }
 }
 
