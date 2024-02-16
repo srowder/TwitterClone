@@ -5,7 +5,7 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    background-color: #36454F;
+    background-color: #212121;
 }
 
 .return-container {
@@ -29,7 +29,7 @@ body, html {
     height: auto;
     border: 2px solid black;
     padding: 20px;
-    background-color: #7B8B96;
+    background-color: #474747;
 }
 
 
@@ -52,11 +52,13 @@ body, html {
 .text-username{
     font-size: 1.2rem;
     margin-bottom: 20px;
+    color: white;
 }
 
 .text{
     font-size: 1.7rem;
     margin-bottom: 10px;
+    color: white;
 }
 
 
@@ -79,7 +81,7 @@ body, html {
 }
 
 .post {
-    background-color: #D3FBD8;
+    background-color: #2E2E2E;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -98,8 +100,8 @@ body, html {
 }
 
 .post-head-user{
-    margin-left:20px;
-    color: rgba(0, 0, 0, 0.89)
+    margin-left: 20px;
+    color: white;
 }
 
 .profile-picture{
@@ -109,7 +111,7 @@ body, html {
 }
 
 .post p {
-    color: #666;
+    color: white;
     word-wrap: break-word; 
     overflow-wrap: break-word; 
     flex-grow: 1; 

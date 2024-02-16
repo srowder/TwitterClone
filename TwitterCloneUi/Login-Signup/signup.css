@@ -4,7 +4,7 @@ body,html{
     margin:0;
     padding: 0;
     height: 100%;
-    background-color: #6D9AC4;
+    background-color: #212121;
     font-family: 'Inter', sans-serif;
 }
 
@@ -25,6 +25,8 @@ body,html{
     padding: 201px 0;
     width: 200px;
     height: auto;
+    border: 5px solid black;
+    border-left: 0px;
 }
 
 
@@ -37,12 +39,14 @@ body,html{
 }
 
 .form-container{
-    background-color: white;
+    background-color: #474747;
     /* border: 1px solid black; */
     padding: 25px;
     font-weight: normal;
     width: 350px;
     height: 500px;
+    color: white;
+    border: 5px solid black;
 }
 
 .header-text{
@@ -74,7 +78,7 @@ body,html{
 }
 
 .submit-button{
-    background-color: #EE5684;
+    background-color: #21DACA;
     color: #fff;
     border: none;
     padding: 8px 30px; 
@@ -82,8 +86,12 @@ body,html{
     font-size: 1.1em; 
     width: 80%;
     border-radius: 20px;
+    transition: 0.3s;
 }
 
+.submit-button:hover{
+    background-color: #116d65;
+}
 
 #div-submit-button{
     margin-top: 45px;
