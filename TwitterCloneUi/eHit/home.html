@@ -11,6 +11,7 @@
     <script src="follow_api.js"></script>
     <script src="post_api.js"></script>
     <script src="like_api.js"></script>
+    
 </head>
 
 <body>
@@ -71,11 +72,30 @@
                 <div id="small-menu">
                     <img id="small-pic" src="/eHit/Images/user.png" alt="Profile Picture">
                 </div>  
+                
                 <ul id="header-menu">
-                    <li><a href="#" onclick="displayUserPosts();">Your Post</a></li>
-                    <li><a href="#" onclick="DisplayUserAndFollowing()"><img class="website-logo" src="/Login-Signup/Images/eHit-logo-transparent.png" alt="website-logo"></a></li>
-                    <li><a href="#" onclick="DisplayFollowing()">Following</a></li>
+                    <div class="menu-main">
+                        <li>
+                            <input type="radio" id="yourPost" name="menuOption" onclick="displayUserPosts();" checked>
+                            <label for="yourPost">Your Post</label>
+                        </li>
+                    </div>
+                    <div id="logo-main">
+                        <li>
+                            <input type="radio" id="userAndFollowing" name="menuOption" onclick="DisplayUserAndFollowing()">
+                            <label for="userAndFollowing">
+                                <img class="website-logo" src="/Login-Signup/Images/eHit-logo-transparent.png" alt="website-logo">
+                            </label>
+                        </li>
+                    </div>
+                    <div class="menu-main">
+                        <li>
+                            <input type="radio" id="following" name="menuOption" onclick="DisplayFollowing()">
+                            <label for="following">Following</label>
+                        </li>
+                    </div>
                 </ul>
+
             </div>
             
         </div>
@@ -242,6 +262,8 @@
         function closeMenu(){
             sidebar.classList.toggle('show-sidebar');
         }
+
+        
 
     </script>
 
