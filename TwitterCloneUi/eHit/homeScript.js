@@ -1,5 +1,6 @@
 /* Token Retrieval */
-let token = getCookie("loginToken");
+// let token = getCookie("loginToken");
+let token = localStorage.getItem('token');
 if (token == null) {
   window.location.href = "../Login-Signup/login.html";
 }
