@@ -29,7 +29,7 @@ async function populateUserList() {
       window.location.reload();
       return;
   }
-
+  document.getElementById("user-list").innerHTML = "";
   await getFollowedUsers();
 
   const followedUsers = JSON.parse(localStorage.getItem('followedUsers')) || [];
@@ -71,13 +71,13 @@ async function populateUserList() {
 }
 
 
-function reloadOnce() {
-  let hasReloaded = false;
-    if (!hasReloaded) {
-        window.location.reload();
-        hasReloaded = true;
-    }
-}
+// function reloadOnce() {
+//   let hasReloaded = false;
+//     if (!hasReloaded) {
+//         window.location.reload();
+//         hasReloaded = true;
+//     }
+// }
 
 async function CheckButton(followBtn) {
   let userId = followBtn.value;
@@ -88,13 +88,13 @@ async function CheckButton(followBtn) {
       await click_followUser(userId);
       // Update the followed users list in localStorage
       updateFollowedUsers(userId, true);
-      reloadOnce();
+      populateUserList()
   } else if (buttonText === "Unfollow") {
       followBtn.textContent = "Follow";
       await click_unfollowUser(userId);
       // Update the followed users list in localStorage
       updateFollowedUsers(userId, false);
-      reloadOnce();
+      populateUserList()
   }
 }
 
