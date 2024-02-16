@@ -39,7 +39,3 @@ In the future, we aim to add more complex functionalities such as post replies a
 ## Additional Notes
 
 Prioritizing efficient JavaScript implementation is crucial for enhancing website functionality and user experience.
-
----
-
-Feel free to customize the structure and content of this README.md template to fit your project's specifics and preferences.
