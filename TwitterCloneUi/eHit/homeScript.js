@@ -43,3 +43,12 @@ function logOut(){
     localStorage.clear();
     window.location.href = "..";
   }
+
+function logOutTemp(){
+  window.location.href = "/Login-Signup/logout.html";
+}
+
+function cancelLogOut(){
+    window.location.href = "/eHit/home.html";
+}
+

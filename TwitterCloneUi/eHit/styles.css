@@ -309,8 +309,14 @@ form textarea {
     color: #666;
 }
 
+/* Testing */
+
+main {
+    background-color: #2980b9;
+}
+
+/* Mobile Screen Size */
 @media only screen and (max-width: 700px) {
-/* Mobile Screen Size*/
     #sidebar {
         display: flex;
         flex-direction: column;
