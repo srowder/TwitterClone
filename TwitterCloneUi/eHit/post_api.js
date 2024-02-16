@@ -74,7 +74,7 @@ async function displayUserPosts() {
             
             var profilePicture = document.createElement('img');
             profilePicture.className = 'profile-picture';
-            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+            profilePicture.src = '../eHit/Images/'+username+'.png'; //change to pfp set by the userr
           
             postHead.appendChild(profilePicture);
             postHead.appendChild(postUser);
@@ -173,7 +173,7 @@ async function DisplayFollowing() {
             
             var profilePicture = document.createElement('img');
             profilePicture.className = 'profile-picture';
-            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+            profilePicture.src = '../eHit/Images/'+postedBy+'.png'; //change to pfp set by the userr
           
             postHead.appendChild(profilePicture);
             postHead.appendChild(postUser);
@@ -266,7 +266,7 @@ async function DisplayUserAndFollowing() {
             
             var profilePicture = document.createElement('img');
             profilePicture.className = 'profile-picture';
-            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+            profilePicture.src = '../eHit/Images/'+postedBy+'.png'; //change to pfp set by the userr
           
             postHead.appendChild(profilePicture);
             postHead.appendChild(postUser);

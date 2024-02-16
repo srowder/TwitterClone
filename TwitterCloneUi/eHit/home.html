@@ -76,7 +76,7 @@
                 <ul id="header-menu">
                     <div class="menu-main">
                         <li>
-                            <input type="radio" id="yourPost" name="menuOption" onclick="displayUserPosts();" checked>
+                            <input type="radio" id="yourPost" name="menuOption" onclick="displayUserPosts();">
                             <label for="yourPost">Your Post</label>
                         </li>
                     </div>
@@ -138,6 +138,27 @@
         // Display the username in the username container
         const usernameDisplay = document.getElementById('username-display');
         usernameDisplay.textContent = username;
+
+        const profilePictureDisplay = document.getElementById('profile-pic');
+
+        function imageExists(url, callback) {
+        var img = new Image();
+        img.onload = function () {
+            callback(true);
+        };
+        img.onerror = function () {
+            callback(false);
+        };
+        img.src = url;
+    }
+
+        const defaultImagePath = "/eHit/Images/user.png";
+
+        imageExists("/eHit/Images/" + username + ".png", function (exists) {
+        // Set the image source based on whether it exists or not
+        profilePictureDisplay.src = exists ? "/eHit/Images/" + username + ".png" : defaultImagePath;
+        });
+
         
         DisplayUserAndFollowing();
         populateUserList();

@@ -18,6 +18,7 @@ html {
     font-size: 20px;
     color: black;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 #username-display:hover {
@@ -280,6 +281,8 @@ input[type="radio"]:checked + label {
 
 .post-head{
     margin: 10px 0px;
+    display: flex;
+    align-items: center;
 }
 
 .post-head-user{
@@ -289,6 +292,8 @@ input[type="radio"]:checked + label {
 
 .profile-picture{
     border-radius: 100%;
+    width: 50px;
+    height: 50px;
 }
 
 .post p {
