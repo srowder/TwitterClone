@@ -1,6 +1,8 @@
 /* Token Retrieval */
 let token = getCookie("loginToken");
-
+if (token == null) {
+  window.location.href = "../Login-Signup/login.html";
+}
 function getCookie(cookieName) {
     let cookie = {};
     document.cookie.split(';').forEach(function(el) {
@@ -32,11 +34,6 @@ async function getUsers(){
       console.log("Error")
     }
 }
-
-/* Window Onload Functions */
-// window.onload=function(){
-//   populateUserList()
-// }
 
 function logOut(){
     document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
