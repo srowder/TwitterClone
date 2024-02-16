@@ -48,7 +48,7 @@ function logOutTemp(){
   window.location.href = "/Login-Signup/logout.html";
 }
 
-function cancelLogOut(){
+function returnHome(){
     window.location.href = "/eHit/home.html";
 }
 
