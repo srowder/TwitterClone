@@ -72,9 +72,9 @@
                     <img id="small-pic" src="/eHit/Images/user.png" alt="Profile Picture">
                 </div>  
                 <ul id="header-menu">
-                    <li><a href="/account/login.html">Your Post</a></li>
-                    <li><a href="/eHit/home.html"><img class="website-logo" src="/Login-Signup/Images/twitter-logo.png" alt="website-logo"></a></li>
-                    <li><a href="#following">Following</a></li>
+                    <li><a href="#" onclick="displayUserPosts();">Your Post</a></li>
+                    <li><a href="#" onclick="DisplayUserAndFollowing()"><img class="website-logo" src="/Login-Signup/Images/twitter-logo.png" alt="website-logo"></a></li>
+                    <li><a href="#" onclick="DisplayFollowing()">Following</a></li>
                 </ul>
             </div>
             
@@ -119,10 +119,8 @@
         const usernameDisplay = document.getElementById('username-display');
         usernameDisplay.textContent = username;
         
-        displayUserPosts();
+        DisplayUserAndFollowing();
         });
-
-        
 
 
         function toggleSearchButton() {
@@ -175,72 +173,61 @@
             const currentDate = new Date().toISOString();
             userPost();
 
-            var content = document.getElementById('postContent').value;            
-            var postDiv = document.createElement('div');
-            postDiv.className = 'post';
+            // var content = document.getElementById('postContent').value;            
+            // var postDiv = document.createElement('div');
+            // postDiv.className = 'post';
 
-            var postHead = document.createElement('div')
-            postHead.className = 'post-head'
+            // var postHead = document.createElement('div')
+            // postHead.className = 'post-head'
 
-            var postUser = document.createElement('span')
-            postUser.className = "post-head-user"
-            postUser.textContent = username;
+            // var postUser = document.createElement('span')
+            // postUser.className = "post-head-user"
+            // postUser.textContent = username;
 
 
-            var postTime = document.createElement('span')
-            postTime.className = "post-head-user"
-            postTime.textContent = currentDate;
+            // var postTime = document.createElement('span')
+            // postTime.className = "post-head-user"
+            // postTime.textContent = currentDate;
 
             
-            var profilePicture = document.createElement('img');
-            profilePicture.className = 'profile-picture';
-            profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
+            // var profilePicture = document.createElement('img');
+            // profilePicture.className = 'profile-picture';
+            // profilePicture.src = 'sample_profile_picture.jpg'; //change to pfp set by the userr
 
            
-            postHead.appendChild(profilePicture);
-            postHead.appendChild(postUser);
-            postHead.appendChild(postTime);
+            // postHead.appendChild(profilePicture);
+            // postHead.appendChild(postUser);
+            // postHead.appendChild(postTime);
 
 
 
-            var postContent = document.createElement('p');
-            postContent.textContent = content;
-            var likeButton = document.createElement('button');
-            likeButton.className = 'likeBtn';
-            likeButton.textContent = 'Like';
-            var likeCount = document.createElement('span');
-            likeCount.className = 'likeCount'; 
-            likeCount.textContent = '0';
+            // var postContent = document.createElement('p');
+            // postContent.textContent = content;
+            // var likeButton = document.createElement('button');
+            // likeButton.className = 'likeBtn';
+            // likeButton.textContent = 'Like';
+            // var likeCount = document.createElement('span');
+            // likeCount.className = 'likeCount'; 
+            // likeCount.textContent = '0';
 
-            postDiv.appendChild(postHead);
-            postDiv.appendChild(postContent);
-            postDiv.appendChild(likeButton);
-            postDiv.appendChild(likeCount); 
+            // postDiv.appendChild(postHead);
+            // postDiv.appendChild(postContent);
+            // postDiv.appendChild(likeButton);
+            // postDiv.appendChild(likeCount); 
 
             
-            var postsContainer = document.getElementById('postsContainer');
-            var placeholderText = postsContainer.querySelector('.placeholder-text');
-            if (placeholderText) {
+            // var postsContainer = document.getElementById('postsContainer');
+            // var placeholderText = postsContainer.querySelector('.placeholder-text');
+            // if (placeholderText) {
                 
-                postsContainer.removeChild(placeholderText);
-            }
+            //     postsContainer.removeChild(placeholderText);
+            // }
             
-            postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+            // postsContainer.insertBefore(postDiv, postsContainer.firstChild);
 
             
             document.getElementById('postContent').value = '';
-           
-            likeButton.addEventListener('click', function() {
-                if (likeButton.textContent === 'Like') {
-                    var currentLikes = parseInt(likeCount.textContent);
-                    likeCount.textContent = currentLikes + 1;
-                    likeButton.textContent = 'Unlike';
-                } else {
-                    var currentLikes = parseInt(likeCount.textContent);
-                    likeCount.textContent = currentLikes - 1;
-                    likeButton.textContent = 'Like';
-                }
-            });
+
         });
 
         document.addEventListener('DOMContentLoaded', function () {
