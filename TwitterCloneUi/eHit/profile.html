@@ -27,7 +27,7 @@
         </div>
         
         <div class="user-tweet-container">
-            <div id='postsContainer'></div>
+            <div id="postsContainer"></div>
 
             <!-- Structure of Post When Created-->
                 <!-- <div class="post">
@@ -48,44 +48,19 @@
     </div>
 
     <script>
-       var username = localStorage.getItem('username');
-        
-        document.addEventListener('DOMContentLoaded', function () {
-
-        // Display the username in the username container
-        const usernameDisplay = document.getElementById('username-display');
-        usernameDisplay.textContent = username;
-
-        const profilePictureDisplay = document.getElementById('profile-pic');
-
-        displayUserPosts();
-        populateUserList();
-
-
-
-        function imageExists(url, callback) {
-        var img = new Image();
-        img.onload = function () {
-            callback(true);
-        };
-        img.onerror = function () {
-            callback(false);
-        };
-        img.src = url;
-    }
-
-        const defaultImagePath = "/eHit/Images/user.png";
-
-        imageExists("/eHit/Images/" + username + ".png", function (exists) {
-        // Set the image source based on whether it exists or not
-        profilePictureDisplay.src = exists ? "/eHit/Images/" + username + ".png" : defaultImagePath;
+         // Retrieve the username from localStorage
+        var username = localStorage.getItem('username');
+        document.addEventListener('DOMContentLoaded', function () { 
+            // Display the username in the username container
+            const usernameDisplay = document.getElementById('username-display');
+            usernameDisplay.textContent = username;
+            console.log('hello')
+            displayUserPosts();
         });
 
-        const postsContainer = document.getElementById('postsContainer');
-
         document.addEventListener('click', function(event) {
-    // Check if the clicked element has the class 'likeBtn'
-    if (event.target.classList.contains('likeBtn')) {
+        // Check if the clicked element has the class 'likeBtn'
+        if (event.target.classList.contains('likeBtn')) {
         // Get the postId attribute of the clicked button
         var postId = event.target.getAttribute('postId');
         console.log('postId:', postId);
@@ -108,8 +83,16 @@
                         action: "like"
                     })
                 });
-
-                reloadOnce()
+                var whereUser = localStorage.getItem('whereUser');
+                if (whereUser === "BOTHPOST"){
+                    DisplayUserAndFollowing();
+                }
+                else if (whereUser === "FOLLOWINGPOST"){
+                    DisplayFollowing();
+                }
+                else{
+                    displayUserPosts();
+                }
 
                 if (!res.ok) {
                     console.error(`Error: ${res.status} ${res.statusText}`);
@@ -140,7 +123,17 @@
                     })
                 });
 
-                reloadOnce()
+                var whereUser = localStorage.getItem('whereUser');
+                if (whereUser === "BOTHPOST"){
+                    DisplayUserAndFollowing();
+                }
+                else if (whereUser === "FOLLOWINGPOST"){
+                    DisplayFollowing();
+                }
+                else{
+                    displayUserPosts();
+                }
+
 
                 if (!res.ok) {
                     console.error(`Error: ${res.status} ${res.statusText}`);
@@ -153,10 +146,8 @@
             } catch (error) {
                 console.error(`Error:`, error);
             }
-           
-        }
-    }
-});
+            }
+            }
         });
 
         
