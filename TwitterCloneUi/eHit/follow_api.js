@@ -22,22 +22,53 @@ async function getFollowedUsers() {
 }
 
 function populateUserList() {
-  for (i = 0; i < existingUsers.length; i++){
-    let userDiv = document.createElement('div');
-    userDiv.class="userDiv";
-    userDiv.id=existingUsers[i];
-    document.getElementById("user-list").appendChild(userDiv);
-      let userDivText = document.createElement('p');
-      userDivText.textContent = existingUsers[i];
-      document.getElementById(existingUsers[i]).appendChild(userDivText)
 
-      let followBtn = document.createElement('button');
-      followBtn.textContent = "Follow";
-      followBtn.value = existingUsers[i];
-      followBtn.onclick = () => click_followUser(followBtn.value);
-      document.getElementById(existingUsers[i]).appendChild(followBtn);
+  if (!existingUsers || existingUsers.length === 0) {
+    console.error('existingUsers is null or empty');
+    window.location.reload(); 
+    return;
   }
 
+
+  for (let i = 0; i < existingUsers.length; i++){
+
+    if (existingUsers[i] === username) {
+      continue;
+    }
+
+    let userDiv = document.createElement('div');
+    userDiv.className = "userDiv"; // Use className instead of class
+    userDiv.id = existingUsers[i];
+    document.getElementById("user-list").appendChild(userDiv);
+
+    let userDivText = document.createElement('p');
+    userDivText.textContent = existingUsers[i];
+    document.getElementById(existingUsers[i]).appendChild(userDivText);
+
+    let followBtn = document.createElement('button');
+    followBtn.textContent = "Follow";
+    followBtn.value = existingUsers[i];
+    followBtn.onclick = () => CheckButton(followBtn);
+    // followBtn.onclick = () => click_followUser(followBtn.value);
+    document.getElementById(existingUsers[i]).appendChild(followBtn);
+  }
+}
+
+
+function CheckButton(followBtn) {
+  // Access the button properties
+  let userId = followBtn.value;
+  let buttonText = followBtn.textContent;
+
+  if (buttonText === "Follow") {
+    // Change button text to "Unfollow"
+    followBtn.textContent = "Unfollow";
+    click_followUser(followBtn.value);
+  } else if (buttonText === "Unfollow") {
+    // Change button text to "Follow"
+    followBtn.textContent = "Follow";
+    click_unfollowUser(followBtn.value);
+  }
 }
 
 /*  FETCH REQUESTS: */
