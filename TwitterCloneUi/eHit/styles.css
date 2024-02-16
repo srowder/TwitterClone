@@ -125,6 +125,11 @@ html {
     cursor: pointer;
 }   
 
+#sign-out-button {
+    border-radius: 5px;
+    padding: 1px;
+}
+
 /* 
 .user-follow {
     margin-bottom: 10px;
@@ -195,7 +200,6 @@ ul {
 #header-menu {
     display: flex;
     flex-direction: row;
-    gap: 20%;
     align-items: center;
     justify-content: center;
     height: 50px;
@@ -221,6 +225,41 @@ ul {
 .website-logo {
     width: 65px;
     height: 65px;
+}
+
+/* Radio Menu Styling */
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    transition: background-color 0.3s, color 0.3s;
+} 
+
+input[type="radio"]:checked + label {
+    color: #fff; /* Highlight text color */
+    font-weight: bold;
+    text-decoration: underline lightblue;
+    text-underline-offset: 15px;
+    text-decoration-thickness: 5px;
+}
+
+#logo-main {
+    width: 50px;
+    height: 100%;
+}
+
+.menu-main {
+    width: 50%;
+    height: 100%;
+}
+
+#logo-main,
+.menu-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
